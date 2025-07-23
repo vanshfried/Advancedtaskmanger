@@ -6,7 +6,7 @@ const cors = require("cors");
 const noteRoutes = require("./routes/notesRoutes");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const URI = process.env.MONGODB_URI;
 
 // Middlewares

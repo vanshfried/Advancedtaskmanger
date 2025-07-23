@@ -10,6 +10,14 @@ router.post("/", async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
+router.delete("/:id", async (req, res) => {
+  try {
+    await Note.findByIdAndDelete(req.params.id);
+    res.json({ message: "Note deleted successfully." });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 router.get('/', async (req, res) => {
   const priorityOrder = { High: 1, Medium: 2, Low: 3 };
   try {
