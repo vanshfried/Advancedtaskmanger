@@ -1,8 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API = 'http://localhost:5000/api/notes';
+const API = axios.create({
+  baseURL: "http://localhost:5000/api/notes"
+});
 
-export const fetchNotes = () => axios.get(API);
-export const createNote = (note) => axios.post(API, note);
-export const updateNote = (id, updatedNote) => axios.put(`${API}/${id}`, updatedNote);
-export const deleteNote = (id) => axios.delete(`${API}/${id}`);
+export const fetchNotes = () => API.get("/");
+export const createNote = (note) => API.post("/", note);
+export const fetchNoteById = (id) => API.get(`/${id}`);
+export const updateNote = (id, updatedNote) => API.put(`/${id}`, updatedNote);
+export const deleteNote = (id) => API.delete(`/${id}`);

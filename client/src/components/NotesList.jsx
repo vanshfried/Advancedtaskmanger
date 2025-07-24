@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { fetchNotes } from '../api/noteAPI';
+import { useNavigate } from "react-router-dom";
 
 const NotesList = ({ reloadFlag,onDelete  }) => {
   const [notes, setNotes] = useState([]);
+   const navigate = useNavigate();
 
   const loadNotes = async () => {
     try {
@@ -29,6 +31,7 @@ const NotesList = ({ reloadFlag,onDelete  }) => {
           {notes.map((note) => (
             <li key={note._id}>
               {note.title} - <strong>{note.content}</strong> [{note.priority}], {note.category}
+              <button style={{ marginLeft: '1rem', color: 'white', background: 'red' }} onClick={() => navigate(`/edit/${note._id}`)}>Edit</button>
               <button
                 style={{ marginLeft: '1rem', color: 'white', background: 'red' }}
                 onClick={() => onDelete(note._id)}
